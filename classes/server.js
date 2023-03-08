@@ -49,9 +49,11 @@ class Server {
             //Mensajes
             sock.mensaje(cliente, this.io);
             //desconectar
-            sock.desconectar(cliente);
+            sock.desconectar(cliente, this.io);
             //Configurar usuario
-            sock.configUser(cliente);
+            sock.configUser(cliente, this.io);
+            //escuchando usuarios activos
+            sock.obtenerUsuarios(cliente, this.io);
         });
     }
     start(callback) {
