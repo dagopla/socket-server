@@ -24,7 +24,14 @@ export const mensaje=(cliente:Socket, io:socketIO.Server)=>{
         
     });
 }
+export const callShift=(cliente:Socket, io:socketIO.Server)=>{
+    cliente.on('call-shift', ()=>{
+        console.log('El turno ha sido llamado' );
 
+        io.emit("shift-called", 'shift-received');
+        
+    });
+}
 export const configUser=(cliente:Socket, io:socketIO.Server)=>{
     cliente.on('configurar-usuario', (payload:{nombre:string},callback:Function)=>{
         console.log('Configuracion recibida', payload);

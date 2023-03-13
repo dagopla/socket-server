@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.obtenerUsuarios = exports.configUser = exports.mensaje = exports.desconectar = exports.conectarCliente = exports.usuariosConectados = void 0;
+exports.obtenerUsuarios = exports.configUser = exports.callShift = exports.mensaje = exports.desconectar = exports.conectarCliente = exports.usuariosConectados = void 0;
 const usuarios_lista_1 = require("../classes/usuarios-lista");
 const usuario_1 = require("../classes/usuario");
 exports.usuariosConectados = new usuarios_lista_1.UsuariosLista();
@@ -24,6 +24,13 @@ const mensaje = (cliente, io) => {
     });
 };
 exports.mensaje = mensaje;
+const callShift = (cliente, io) => {
+    cliente.on('call-shift', () => {
+        console.log('El turno ha sido llamado');
+        io.emit("shift-called", 'shift-received');
+    });
+};
+exports.callShift = callShift;
 const configUser = (cliente, io) => {
     cliente.on('configurar-usuario', (payload, callback) => {
         console.log('Configuracion recibida', payload);

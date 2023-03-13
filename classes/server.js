@@ -54,6 +54,8 @@ class Server {
             sock.configUser(cliente, this.io);
             //escuchando usuarios activos
             sock.obtenerUsuarios(cliente, this.io);
+            //escuchar cuando se llama un turno
+            sock.callShift(cliente, this.io);
         });
     }
     start(callback) {
